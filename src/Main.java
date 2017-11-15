@@ -5,7 +5,7 @@ public class Main {
     static long NUM_THREADS;
     static long NUM_ITERATIONS;
 
-    static long totalResults;
+    static double totalResults;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -26,7 +26,7 @@ public class Main {
         // create threads
         ArrayList<Thread> threads = new ArrayList<>();
         for (int i = 0; i < NUM_THREADS; i++) {
-            Runnable processor = new Pi_Calc((int) (NUM_ITERATIONS/NUM_THREADS));
+            Runnable processor = new Pi_Calc((NUM_ITERATIONS/NUM_THREADS));
             Thread t = new Thread(processor);
             threads.add(t);
             t.start();
@@ -38,16 +38,17 @@ public class Main {
         }
 
         // print result
-        long actual = totalResults / NUM_THREADS;
+        System.out.println("Total is: " + totalResults);
+        System.out.println("Num Threads is: " + NUM_THREADS);
+        double actual = totalResults / NUM_THREADS;
         System.out.println("Actual Result: " + actual);
-
-
 
 
     }
 
 
-    public synchronized static void addResult(long p) {
+    public synchronized static void addResult(double p) {
+        System.out.println("Adding results " + p);
         totalResults += p;
     }
 }

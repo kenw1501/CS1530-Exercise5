@@ -2,12 +2,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Pi_Calc implements Runnable{
 
-    int hits = 0;
-    int misses = 0;
+    long hits = 0;
+    long misses = 0;
 
-    int iterations;
+    long iterations;
 
-    public Pi_Calc(int it) {
+    public Pi_Calc(long it) {
         this.iterations = it;
     }
 
@@ -15,20 +15,22 @@ public class Pi_Calc implements Runnable{
     public void run() {
 
         for (int i = 0; i < iterations; i++) {
-            if ((Math.pow(getRandom(), 2) + Math.pow(getRandom(), 2)) <= 1) {
+            Double x = getRandom();
+            Double y = getRandom();
+            if ((Math.pow(x, 2) + Math.pow(y, 2)) <= 1.0) {
                 hits++;
             } else {
                 misses++;
             }
         }
 
-        long pi = ((hits/iterations)*4);
+        double pi = ((hits*1.0)/iterations)*4.0;
         Main.addResult(pi);
     }
 
 
-    public long getRandom() {
-        return (ThreadLocalRandom.current().nextLong(1));
+    public Double getRandom() {
+        return (ThreadLocalRandom.current().nextDouble(1));
     }
 
 
