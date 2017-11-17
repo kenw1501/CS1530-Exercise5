@@ -26,6 +26,7 @@ public class Pi_Calc implements Runnable{
 
         double pi = ((hits*1.0)/iterations)*4.0;
         Main.addResult(pi);
+
     }
 
 

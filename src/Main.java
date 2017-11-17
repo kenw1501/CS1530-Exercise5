@@ -25,7 +25,7 @@ public class Main {
 
         // create threads
         ArrayList<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < NUM_THREADS; i++) {
+        for (int i = 0; i <= NUM_THREADS; i++) {
             Runnable processor = new Pi_Calc((NUM_ITERATIONS/NUM_THREADS));
             Thread t = new Thread(processor);
             threads.add(t);
@@ -38,17 +38,14 @@ public class Main {
         }
 
         // print result
-        System.out.println("Total is: " + totalResults);
-        System.out.println("Num Threads is: " + NUM_THREADS);
-        double actual = totalResults / NUM_THREADS;
-        System.out.println("Actual Result: " + actual);
+        double actual = totalResults / (NUM_THREADS+1);
+        System.out.println("Result: " + actual);
 
 
     }
 
 
     public synchronized static void addResult(double p) {
-        System.out.println("Adding results " + p);
         totalResults += p;
     }
 }
